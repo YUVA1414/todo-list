@@ -1,0 +1,4 @@
+- [x] Make age input editable in src/app/pop-up/pop-up.html by removing readonly and adding (ngModelChange)="onAgeChange()".
+- [x] Add onAgeChange() method in src/app/pop-up/pop-up.ts to calculate date of birth from age (using Jan 1 of birth year).
+- [x] Keep existing onDobChange() for calculating age from date of birth.
+- [x] Test the bidirectional calculation in the popup (build successful).

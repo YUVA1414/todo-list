@@ -1,0 +1,22 @@
+<div class="popup-overlay" *ngIf="isVisible">
+  <div class="popup-body">
+    <button class="close-icon" (click)="cancel()">&times;</button>
+    <p class="form-error" *ngIf="formError">Please fill out all required fields.</p>
+    <form (ngSubmit)="save()">
+      <label for="fname">First Name <span class="required">*</span></label>
+      <input type="text" id="fname" [(ngModel)]="person.firstName" name="fname" required>
+      <label for="lname">Last Name <span class="required">*</span></label>
+      <input type="text" id="lname" [(ngModel)]="person.lastName" name="lname" required>
+      <label for="age">Age <span class="required">*</span></label>
+      <input type="number" id="age" [(ngModel)]="person.age" (ngModelChange)="onAgeChange()" name="age" required>
+      <label for="dob">Date of Birth <span class="required">*</span></label>
+      <input type="date" id="dob" [(ngModel)]="person.dateOfBirth" (ngModelChange)="onDobChange()" name="dob" required>
+      <div class="dob-error" *ngIf="dobError">Future dates are not allowed.</div>
+      <label for="comments">Comment</label>
+      <textarea id="comments" [(ngModel)]="person.comment" name="comments"></textarea>
+      <div style="text-align:center;">
+        <button type="submit" class="submit-btn">{{ personToEdit ? 'Update' : 'Submit' }}</button>
+      </div>
+    </form>
+  </div>
+</div>
