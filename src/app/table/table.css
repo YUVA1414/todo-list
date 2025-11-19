@@ -15,6 +15,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-left: 250px;
    
 }
 
@@ -30,7 +31,7 @@ body {
   font-size: 20px;
   cursor: pointer;
   border: none;
-  background-color: #5e665e;
+  background-color: #757775;
   color: white;
   border-radius: 5px;
   transition: background-color 0.3s;
@@ -50,10 +51,10 @@ body {
 }
 
 .person-table th {
-  border: 1px solid rgba(245, 242, 238, 0.667);
+  border: 1px solid rgba(153, 150, 147, 0.667);
   padding: 5px;
   text-align: center;
-  background-color: #b7b99f;
+  background-color: #878783;
 }
 
 .person-table td {
@@ -88,5 +89,5 @@ body {
 }
 
 .icon-btn:hover {
-  transform: scale(1.2);
+  transform: scale(1.5);
 }

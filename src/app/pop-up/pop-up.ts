@@ -52,6 +52,7 @@ export class PopUp implements OnChanges {
     this.dobError = false;
   }
 
+
   onDobChange() {
     this.dobError = false;
     if (this.person.dateOfBirth) {
@@ -93,6 +94,7 @@ export class PopUp implements OnChanges {
       this.dobError = true;
       return;
     }
+    
 
     this.onSave.emit(this.person);
   }
@@ -100,4 +102,4 @@ export class PopUp implements OnChanges {
   cancel() {
     this.onCancel.emit();
   }
-}
+}                             
