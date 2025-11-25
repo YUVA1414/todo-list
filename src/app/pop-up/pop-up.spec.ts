@@ -20,4 +20,4 @@ describe('PopUp', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-});
+}); 

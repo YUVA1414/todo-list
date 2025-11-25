@@ -1,5 +1,4 @@
-import { Component, signal, OnInit, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Component, signal, OnInit } from '@angular/core';
 import { PopUp } from './pop-up/pop-up';
 import { Table } from './table/table';
 
@@ -23,28 +22,19 @@ export class App implements OnInit {
   isPopupVisible = signal(false);
   editingPerson = signal<Person | null>(null);
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
-
   ngOnInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      const storedPersons = localStorage.getItem('persons');
-      if (storedPersons) {
-        this.persons.set(JSON.parse(storedPersons));
-      } else {
-        this.persons.set([]);
-      }
+    const storedPersons = localStorage.getItem('persons');
+    if (storedPersons) {
+      this.persons.set(JSON.parse(storedPersons));
     }
   }
 
   private savePersonsToStorage() {
-    if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem('persons', JSON.stringify(this.persons()));
-    }
+    localStorage.setItem('persons', JSON.stringify(this.persons()));
   }
 
   openPopup() {
     this.editingPerson.set(null);
-
     this.isPopupVisible.set(true);
   }
 
@@ -60,15 +50,23 @@ export class App implements OnInit {
 
   savePerson(person: Person) {
     if (this.editingPerson()) {
-
+   
       this.persons.update(persons =>
         persons.map(p => p.id === person.id ? person : p)
       );
     } else {
+      
+      const newId =
+        this.persons().length > 0
+          ? Math.max(...this.persons().map(p => p.id)) + 1
+          : 1;
 
-      const newId = this.persons().length > 0 ? Math.max(...this.persons().map(p => p.id)) + 1 : 1;
-      this.persons.update(persons => [...persons, { ...person, id: newId }]);
+      this.persons.update(persons => [
+        ...persons,
+        { ...person, id: newId }
+      ]);
     }
+
     this.savePersonsToStorage();
     this.closePopup();
   }

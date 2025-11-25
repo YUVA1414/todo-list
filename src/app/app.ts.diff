@@ -1,0 +1,47 @@
+import { isPlatformBrowser } from '@angular/common';
+=======
+import { Component, signal, OnInit } from '@angular/core';
+>>>>>>> REPLACE
+
+<<<<<<< SEARCH
+export class App implements OnInit {
+  persons = signal<Person[]>([]);
+  isPopupVisible = signal(false);
+  editingPerson = signal<Person | null>(null);
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
+  ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      const storedPersons = localStorage.getItem('persons');
+      if (storedPersons) {
+        this.persons.set(JSON.parse(storedPersons));
+      } else {
+        this.persons.set([]);
+      }
+    }
+  }
+
+  private savePersonsToStorage() {
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('persons', JSON.stringify(this.persons()));
+    }
+  }
+=======
+export class App implements OnInit {
+  persons = signal<Person[]>([]);
+  isPopupVisible = signal(false);
+  editingPerson = signal<Person | null>(null);
+
+  ngOnInit() {
+    const storedPersons = localStorage.getItem('persons');
+    if (storedPersons) {
+      this.persons.set(JSON.parse(storedPersons));
+    } else {
+      this.persons.set([]);
+    }
+  }
+
+  private savePersonsToStorage() {
+    localStorage.setItem('persons', JSON.stringify(this.persons()));
+  }
